@@ -14,12 +14,11 @@ module Helpers
       caps = pad.current_caps
       structure = caps.get_structure(0)
       mime_type = structure.name
-      pp mime_type
 
       if mime_type.include?("video/x-raw")
-        pad.link(video_sink_pad)
+        pad.link(video_sink_pad.get_static_pad("sink"))
       elsif mime_type.include?("audio/x-raw")
-        pad.link(audio_sink_pad)
+        pad.link(audio_sink_pad.get_static_pad("sink"))
       end
     end
   end
